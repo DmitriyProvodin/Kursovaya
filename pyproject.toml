@@ -1,18 +1,37 @@
-[project]
-name = "kursovaya"
+[tool.poetry]
+name = "bank-transactions-cli"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Dmitrou",email = "provodind@bk.ru"}
-]
-readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pandas (>=2.2.3,<3.0.0)",
-    "openpyxl (>=3.1.5,<4.0.0)"
-]
+description = "CLI-приложение для анализа банковских транзакций"
+authors = ["User <provodind@bk.ru>"]
+packages = [{ include = "src" }]
 
+[tool.poetry.dependencies]
+python = ">=3.10"
+pandas = "^2.2.2"
+openpyxl = "^3.1.2"
+python-dotenv = "^1.0.1"
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+mypy = "^1.10"
+ruff = "^0.4.0"
+
+[tool.ruff]
+line-length = 119
+
+[tool.mypy]
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = "venv"
+
+[tool.black]
+line-length = 119
+exclude = '''
+/(
+    \.git
+)/
+'''
+
+[tool.isort]
+line_length = 119
+profile = "black"
